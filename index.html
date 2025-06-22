@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iron Paradise - Gimnasio</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fas fa-dumbbell"></i>
+        <span>IRON PARADISE</span>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#SobreNosotros">Nosotros</a></li>
+        <li><a href="#equipo">Personal</a></li>
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#contacto">Ubicación</a></li>
+        <li><a href="#contacto" class="btn-signup">Contáctanos</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Transforma tu cuerpo con el <span>gimnasio perfecto.</span></h1>
+        <p>¿Es tu primera vez en el gimnasio? En Iron Paradise te guiamos desde cero para que empieces fuerte y con confianza.</p>
+        <div class="hero-buttons">
+          <a href="#planes" class="btn-red">Ver Planes</a>
+          <a href="#" class="btn-video" id="videoBtn">▶ Ver Video</a>
+        </div>
+        <div class="stats">
+          <div><strong>3+</strong><br>Entrenadores Expertos</div>
+          <div><strong>100+</strong><br>Miembros Activos</div>
+          <div><strong>10+</strong><br>Programas Fitness</div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <h3>1500 <br>followers</h3>
+        <div class="social-media">
+          <a href="https://www.instagram.com/ironparadise._/" target="_blank" class="instagram-link">
+            <i class="fab fa-instagram"></i>
+            <span>Síguenos en Instagram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Modal del Video -->
+  <div class="video-modal" id="videoModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="video-container">
+        <video controls>
+          <source src="src/img/video1.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <section class="sobre-nosotros" id="SobreNosotros">
+    <div class="sobre-contenido">
+      <div class="sobre-texto">
+        <small>Sobre Nosotros</small>
+        <h2>Un gimnasio para toda la familia</h2>
+        <p>
+          En <strong>Iron Paradise</strong> nos esforzamos por ofrecer un ambiente acogedor, seguro y familiar.<br>
+          Aquí todos son bienvenidos, sin importar edad o experiencia. Nuestro objetivo es ayudarte a mantenerte activo,
+          saludable y motivado junto a tu familia o amigos.
+        </p>
+      </div>
+      <div class="sobre-datos">
+        <div class="dato">
+          <h3>+80h</h3>
+          <p>Horas semanales</p>
+        </div>
+        <div class="dato">
+          <h3>+500m²</h3>
+          <p>Área de entrenamiento</p>
+        </div>
+        <div class="dato">
+          <h3>+200</h3>
+          <p>Clientes felices</p>
+        </div>
+      </div>
+    </div>
+    <div class="sobre-imagen">
+      <img src="src/img/sobrenosotros.jpg" alt="Entrenador ayudando a persona en el gimnasio">
+    </div>
+  </section>
+
+  <section class="equipo-section" id="equipo">
+    <div class="equipo-container">
+      <div class="equipo-content">
+        <div class="equipo-texto">
+          <h2>Nuestro Personal</h2>
+          <p>Conoce a los profesionales que harán posible tu transformación. Nuestro equipo está compuesto por expertos certificados en diferentes áreas del fitness y la salud.</p>
+          
+          <div class="equipo-caracteristicas">
+            <div class="caracteristica">
+              <i class="fas fa-certificate"></i>
+              <span>Profesionales certificados</span>
+            </div>
+            <div class="caracteristica">
+              <i class="fas fa-heart"></i>
+              <span>Atención personalizada</span>
+            </div>
+            <div class="caracteristica">
+              <i class="fas fa-users"></i>
+              <span>Experiencia comprobada</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="equipo-carrusel">
+          <div class="carousel">
+            <button class="btn-nav btn-left" onclick="prevSlide()">&#10094;</button>
+            <img id="imagen-equipo" src="src/img/entrenador2.jpg" alt="Miembro del equipo">
+            <button class="btn-nav btn-right" onclick="nextSlide()">&#10095;</button>
+
+            <div class="info">
+              <div class="nombre" id="nombre">Christian Samsing Stambuck</div>
+              <div class="cargo" id="cargo">Fundador y Preparador Físico</div>
+              <div class="frase" id="frase">"El liderazgo comienza con el ejemplo."</div>
+              <div class="contacto-entrenador">
+                <i class="fas fa-phone"></i>
+                <span>+56 9 8765 4321</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="planes-section" id="planes">
+    <div class="planes-background">
+      <img src="src/img/precio.jpg" alt="Gimnasio Iron Paradise">
+    </div>
+    
+    <div class="planes-content">
+      <h2>Elige el Mejor Plan</h2>
+      <p> <strong>Sin cargos ocultos. Escoge el plan que más se acomode a tu estilo de vida.</strong> </p>
+      
+     
+
+      <div class="pricing-toggle">
+          <div class="toggle-indicator"></div>
+          <button class="toggle-btn active" data-target="diario">Diario</button>
+          <button class="toggle-btn" data-target="semanal">Semanal</button>
+          <button class="toggle-btn" data-target="mensual">Mensual</button>
+          <button class="toggle-btn" data-target="pack">Pack</button>
+      </div>
+
+      <div id="diario" class="planes-grid pricing-plan-group active">
+          <div class="plan-card">
+              <h3>DIARIO</h3>
+              <p class="precio">$4.000 <span>/ Día</span></p>
+              <ul>
+                <li>Acceso total al gimnasio</li>
+                <li>1 clase grupal</li>
+                <li>Guía básica</li>
+              </ul>
+              
+          </div>
+      </div>
+
+      <div id="semanal" class="planes-grid pricing-plan-group">
+          <div class="plan-card">
+              <h3>SEMANAL</h3>
+              <p class="precio">$15.000 <span>/ Semana</span></p>
+              <ul>
+                <li>Acceso total al gimnasio</li>
+                <li>3 clases grupales</li>
+            
+               
+              </ul>
+              
+          </div>
+      </div>
+
+      <div id="mensual" class="planes-grid pricing-plan-group">
+          <div class="plan-card destacado">
+              <div class="popular-badge">MÁS POPULAR</div>
+              <h3>MENSUAL</h3>
+              <p class="precio">$36.000 <span>/ Mes</span></p>
+              <ul>
+                  <li>Acceso total al gimnasio</li>
+                  
+                  <li>Plan de entrenamiento inicial</li>
+                 
+                 
+              </ul>
+              
+          </div>
+          <div class="plan-card destacado">
+            <div class="save-badge">AHORRA 22.22%</div>
+            <h3>MENSUAL ESTUDIANTE</h3>
+            <p class="precio">$28.000 <span>/ Mes</span></p>
+            <ul>
+                <li>Acceso total al gimnasio hasta las 20:00 hrs</li>
+                <li>Plan de entrenamiento inicial</li>
+                
+               
+            </ul>
+            
+        </div>
+      </div>
+      
+      <div id="pack" class="planes-grid pricing-plan-group">
+          <div class="plan-card">
+              <div class="save-badge">AHORRA 30%</div>
+              <h3>PACK ANUAL</h3>
+              <p class="precio">$430.000 <span>/ Año</span></p>
+              <ul>
+                  <li>Todo lo del plan mensual</li>
+              </ul>
+              
+          </div>
+          <div class="plan-card">
+            <div class="save-badge">AHORRA 20%</div>
+            <h3>PACK SEMESTRAL</h3>
+            <p class="precio">$215.000 <span>/ SEMESTRE</span></p>
+            <ul>
+                <li>Todo lo del plan mensual</li>
+ 
+            </ul>
+            
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacto-section" id="contacto">
+    <div class="contacto-container">
+      <h2>Contáctanos</h2>
+        <p><strong>¿Tienes alguna pregunta? Estamos aquí para ayudarte.</strong></p>
+      
+      <div class="contacto-content">
+        <div class="formulario-card">
+          <h3>Envíanos un mensaje</h3>
+          <form class="contacto-form">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" placeholder="Tu nombre" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" placeholder="tucorreo@email.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" rows="4,5" placeholder="Escribe tu mensaje..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+          </form>
+        </div>
+        
+        <div class="mapa-card">
+          <h3>Nuestra ubicación</h3>
+          <div class="mapa-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d255.27508899241005!2d-73.5956126724222!3d-41.61961398175119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2scl!4v1750553113022!5m2!1ses-419!2scl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="info-contacto">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Calle Principal 123, Puerto Montt</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <span>+56 9 1234 5678</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <span>info@ironparadise.cl</span>
+            </div>
+            <div class="info-item">
+              <i class="fab fa-facebook"></i>
+              <a href="https://www.facebook.com/profile.php?id=100083281355545" target="_blank" class="social-link">Iron Paradise</a>
+            </div>
+            <div class="info-item">
+              <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/ironparadise._/" target="_blank" class="social-link">@ironparadise._</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Iron Paradise. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navegación móvil
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+
+    // Funcionalidad del Modal de Video
+    const videoBtn = document.getElementById('videoBtn');
+    const videoModal = document.getElementById('videoModal');
+    const closeModal = document.querySelector('.close-modal');
+
+    videoBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      videoModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeModal.addEventListener('click', () => {
+      videoModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        videoModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Funcionalidad del Toggle de Precios
+    window.addEventListener('load', () => {
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
+        const planGroups = document.querySelectorAll('.pricing-plan-group');
+        const indicator = document.querySelector('.toggle-indicator');
+
+        if (!indicator || !toggleButtons.length) return;
+
+        function moveIndicator(target) {
+            if (!target) return;
+            indicator.style.width = `${target.offsetWidth}px`;
+            indicator.style.left = `${target.offsetLeft}px`;
+            indicator.style.visibility = 'visible';
+        }
+
+        const initialActiveButton = document.querySelector('.toggle-btn.active');
+        moveIndicator(initialActiveButton);
+
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                moveIndicator(e.currentTarget);
+
+                toggleButtons.forEach(btn => btn.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+
+                const targetId = e.currentTarget.getAttribute('data-target');
+                planGroups.forEach(group => {
+                    group.classList.toggle('active', group.id === targetId);
+                });
+            });
+        });
+    });
+
+    // Funcionalidad del Carrusel de Equipo
+    const equipo = [
+      {
+        nombre: "Christian Samsing Stambuck",
+        cargo: "Fundador y Preparador Físico",
+        frase: "El liderazgo comienza con el ejemplo.",
+        imagen: "src/img/entrenador2.jpg",
+        contacto: "+56 9 8765 4321"
+      },
+      {
+        nombre: "María López",
+        cargo: "Preparadora Física y Nutricionista",
+        frase: "Cada reto es una oportunidad para crecer.",
+        imagen: "src/img/entrenador1.jpg",
+        contacto: "+56 9 7654 3210"
+      },
+      {
+        nombre: "Camila Rojas",
+        cargo: "Kinesióloga",
+        frase: "La recuperación también es parte del entrenamiento.",
+        imagen: "src/img/entrenador3.jpg",
+        contacto: "+56 9 6543 2109"
+      }
+    ];
+
+    let index = 0;
+
+    function actualizarSlide() {
+      document.getElementById("imagen-equipo").src = equipo[index].imagen;
+      document.getElementById("nombre").textContent = equipo[index].nombre;
+      document.getElementById("cargo").textContent = equipo[index].cargo;
+      document.getElementById("frase").textContent = `"${equipo[index].frase}"`;
+      document.querySelector(".contacto-entrenador span").textContent = equipo[index].contacto;
+    }
+
+    function prevSlide() {
+      index = (index - 1 + equipo.length) % equipo.length;
+      actualizarSlide();
+    }
+
+    function nextSlide() {
+      index = (index + 1) % equipo.length;
+      actualizarSlide();
+    }
+
+    // Inicializar el carrusel cuando la página cargue
+    window.addEventListener('load', () => {
+      actualizarSlide();
+    });
+  </script>
+</body>
+</html> 
