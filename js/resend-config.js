@@ -1,4 +1,4 @@
-// Configuración para usar la API route de Vercel
+// Configuración para usar la API route de Vercel - VERSIÓN ACTUALIZADA
 const API_ENDPOINT = '/api/send-email';
 
 // Función para enviar email usando nuestra API route
