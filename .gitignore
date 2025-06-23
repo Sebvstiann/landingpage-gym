@@ -25,6 +25,5 @@ yarn-error.log*
 *.backup
 
 # Archivos de configuración de API (proteger claves)
-js/resend-config.js
 .env
 config.js 

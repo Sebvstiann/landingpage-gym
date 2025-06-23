@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "iron-paradise",
   "builds": [
     {
       "src": "index.html",
@@ -7,6 +8,10 @@
     }
   ],
   "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
     {
       "src": "/(.*)",
       "dest": "/index.html"
@@ -27,8 +32,14 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         }
       ]
     }
-  ]
+  ],
+  "functions": {},
+  "env": {}
 } 

@@ -1,0 +1,24 @@
+{
+  "name": "iron-paradise",
+  "version": "1.0.0",
+  "description": "Sitio web del gimnasio Iron Paradise",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "gimnasio",
+    "fitness",
+    "iron-paradise",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Iron Paradise",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+} 
