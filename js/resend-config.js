@@ -1,52 +1,29 @@
-// Configuración de Resend API
-const RESEND_API_KEY = 're_fH98SHgB_HCM3EBh6XDVtmoD41TdEEtkg';
-const RESEND_API_URL = 'https://api.resend.com/emails';
+// Configuración para usar la API route de Vercel
+const API_ENDPOINT = '/api/send-email';
 
-// Función para enviar email usando Resend
+// Función para enviar email usando nuestra API route
 async function sendEmail(formData) {
   try {
     console.log('=== INICIO ENVÍO EMAIL ===');
-    console.log('API Key:', RESEND_API_KEY.substring(0, 10) + '...');
-    console.log('URL:', RESEND_API_URL);
+    console.log('API Endpoint:', API_ENDPOINT);
     console.log('Datos del formulario:', formData);
     
-    const emailData = {
-      from: 'Iron Paradise <onboarding@resend.dev>',
-      to: ['sebastiansch.dev@gmail.com'],
-      subject: `Nuevo mensaje de contacto - ${formData.nombre}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #D0021A;">Nuevo Mensaje de Contacto</h2>
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px;">
-            <p><strong>Nombre:</strong> ${formData.nombre}</p>
-            <p><strong>Email:</strong> ${formData.correo}</p>
-            <p><strong>Mensaje:</strong></p>
-            <div style="background-color: white; padding: 15px; border-radius: 5px; margin-top: 10px;">
-              ${formData.mensaje.replace(/\n/g, '<br>')}
-            </div>
-          </div>
-          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px;">
-            <p>Este mensaje fue enviado desde el formulario de contacto de Iron Paradise.</p>
-            <p>Fecha: ${new Date().toLocaleString('es-CL')}</p>
-          </div>
-        </div>
-      `
+    // Preparar datos para enviar a nuestra API
+    const requestData = {
+      nombre: formData.nombre,
+      email: formData.correo,
+      telefono: formData.telefono || '',
+      mensaje: formData.mensaje
     };
 
-    console.log('Datos del email preparados:', {
-      from: emailData.from,
-      to: emailData.to,
-      subject: emailData.subject,
-      htmlLength: emailData.html.length
-    });
+    console.log('Datos preparados para la API:', requestData);
 
     const requestOptions = {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(emailData)
+      body: JSON.stringify(requestData)
     };
 
     console.log('Opciones de la petición:', {
@@ -55,20 +32,19 @@ async function sendEmail(formData) {
       bodyLength: requestOptions.body.length
     });
 
-    console.log('Enviando petición a Resend...');
-    const response = await fetch(RESEND_API_URL, requestOptions);
+    console.log('Enviando petición a nuestra API...');
+    const response = await fetch(API_ENDPOINT, requestOptions);
 
     console.log('Respuesta recibida:', {
       status: response.status,
       statusText: response.statusText,
-      ok: response.ok,
-      headers: Object.fromEntries(response.headers.entries())
+      ok: response.ok
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Error response body:', errorText);
-      throw new Error(`Error HTTP: ${response.status} - ${errorText}`);
+      const errorData = await response.json();
+      console.error('Error response body:', errorData);
+      throw new Error(`Error HTTP: ${response.status} - ${errorData.error || errorData.message}`);
     }
 
     const result = await response.json();
@@ -85,21 +61,20 @@ async function sendEmail(formData) {
   }
 }
 
-// Función para probar la conectividad con Resend
-async function testResendConnection() {
-  console.log('=== PRUEBA DE CONECTIVIDAD RESEND ===');
+// Función para probar la conectividad con nuestra API
+async function testApiConnection() {
+  console.log('=== PRUEBA DE CONECTIVIDAD API ===');
   try {
-    const response = await fetch('https://api.resend.com/emails', {
+    const response = await fetch(API_ENDPOINT, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Iron Paradise <onboarding@resend.dev>',
-        to: ['sebastiansch.dev@gmail.com'],
-        subject: 'Prueba de conectividad - Iron Paradise',
-        html: '<p>Esta es una prueba de conectividad con la API de Resend.</p>'
+        nombre: 'Prueba',
+        email: 'prueba@test.com',
+        telefono: '123456789',
+        mensaje: 'Esta es una prueba de conectividad con la API.'
       })
     });
 
@@ -110,8 +85,8 @@ async function testResendConnection() {
       console.log('Prueba exitosa:', result);
       return true;
     } else {
-      const errorText = await response.text();
-      console.error('Error en la prueba:', errorText);
+      const errorData = await response.json();
+      console.error('Error en la prueba:', errorData);
       return false;
     }
   } catch (error) {
@@ -122,6 +97,6 @@ async function testResendConnection() {
 
 // Ejecutar prueba al cargar la página
 window.addEventListener('load', () => {
-  console.log('Página cargada, probando conectividad con Resend...');
-  testResendConnection();
+  console.log('Página cargada, probando conectividad con la API...');
+  testApiConnection();
 }); 

@@ -18,6 +18,9 @@
   ],
   "author": "Iron Paradise",
   "license": "MIT",
+  "dependencies": {
+    "resend": "^3.1.0"
+  },
   "devDependencies": {
     "serve": "^14.2.0"
   }
