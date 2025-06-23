@@ -26,10 +26,10 @@ export default async function handler(req, res) {
       });
     }
 
-    // Preparar datos del email
+    // Preparar datos del email usando el dominio de prueba de Resend
     const emailData = {
-      from: 'Iron Paradise <noreply@ironparadise.com>',
-      to: ['sebastiansch.dev@gmail.com'], // Cambia por tu email real
+      from: 'Iron Paradise <onboarding@resend.dev>',
+      to: ['sebastiansch.dev@gmail.com'],
       subject: `Nuevo mensaje de ${nombre} - Iron Paradise`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
