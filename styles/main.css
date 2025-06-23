@@ -1133,3 +1133,53 @@ p {
     transform: scale(1.1);
   }
 } 
+
+/* --- Notificaciones --- */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+  max-width: 400px;
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+}
+
+.notification.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.notification.error {
+  background-color: #dc3545;
+  color: white;
+}
+
+.notification i {
+  font-size: 1.2rem;
+}
+
+/* Estilos para el botón de carga */
+.btn-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-loading i {
+  font-size: 0.9rem;
+} 

@@ -68,6 +68,30 @@ git clone https://github.com/tu-usuario/iron-paradise.git
 
 2. Abre `index.html` en tu navegador
 
+## 🚀 Despliegue en Vercel
+
+### Opción 1: Despliegue automático desde GitHub
+1. Conecta tu repositorio de GitHub a Vercel
+2. Vercel detectará automáticamente que es un sitio estático
+3. El sitio se desplegará automáticamente
+
+### Opción 2: Despliegue manual
+1. Instala Vercel CLI:
+```bash
+npm i -g vercel
+```
+
+2. Despliega desde la carpeta del proyecto:
+```bash
+vercel
+```
+
+3. Sigue las instrucciones en la terminal
+
+### Configuración de Resend
+1. Asegúrate de que el archivo `js/resend-config.js` contenga tu clave de API
+2. El formulario de contacto funcionará automáticamente en producción
+
 ## 📄 Licencia
 
 © 2025 Iron Paradise. Todos los derechos reservados. 

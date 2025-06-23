@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="js/resend-config.js"></script>
 </head>
 
 <body>
@@ -253,23 +254,28 @@
       <div class="contacto-content">
         <div class="formulario-card">
           <h3>Envíanos un mensaje</h3>
-          <form class="contacto-form">
+          <form class="contacto-form" id="contactForm">
             <div class="form-group">
               <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" placeholder="Tu nombre" required>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
             </div>
             
             <div class="form-group">
               <label for="correo">Correo electrónico</label>
-              <input type="email" id="correo" placeholder="tucorreo@email.com" required>
+              <input type="email" id="correo" name="correo" placeholder="tucorreo@email.com" required>
             </div>
             
             <div class="form-group">
               <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" rows="4,5" placeholder="Escribe tu mensaje..." required></textarea>
+              <textarea id="mensaje" name="mensaje" rows="4,5" placeholder="Escribe tu mensaje..." required></textarea>
             </div>
             
-            <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+            <button type="submit" class="btn-enviar" id="submitBtn">
+              <span class="btn-text">Enviar Mensaje</span>
+              <span class="btn-loading" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i> Enviando...
+              </span>
+            </button>
           </form>
         </div>
         
@@ -426,6 +432,88 @@
     window.addEventListener('load', () => {
       actualizarSlide();
     });
+
+    // Funcionalidad del Formulario de Contacto
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Mostrar estado de carga
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      
+      // Obtener datos del formulario
+      const formData = {
+        nombre: document.getElementById('nombre').value,
+        correo: document.getElementById('correo').value,
+        mensaje: document.getElementById('mensaje').value
+      };
+
+      try {
+        // Enviar email usando Resend
+        const result = await sendEmail(formData);
+        
+        if (result.success) {
+          // Éxito
+          showNotification('¡Mensaje enviado con éxito! Te responderemos pronto.', 'success');
+          contactForm.reset();
+        } else {
+          // Error
+          console.error('Error del servidor:', result.error);
+          let errorMessage = 'Error al enviar el mensaje. Por favor, intenta nuevamente.';
+          
+          if (result.error.includes('401')) {
+            errorMessage = 'Error de autenticación. Verifica la clave de API.';
+          } else if (result.error.includes('403')) {
+            errorMessage = 'Error de permisos. Verifica la configuración de Resend.';
+          } else if (result.error.includes('429')) {
+            errorMessage = 'Demasiados intentos. Por favor, espera un momento.';
+          } else if (result.error.includes('500')) {
+            errorMessage = 'Error del servidor. Por favor, intenta más tarde.';
+          }
+          
+          showNotification(errorMessage, 'error');
+        }
+      } catch (error) {
+        console.error('Error de red:', error);
+        showNotification('Error de conexión. Verifica tu conexión a internet.', 'error');
+      } finally {
+        // Restaurar botón
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      }
+    });
+
+    // Función para mostrar notificaciones
+    function showNotification(message, type) {
+      // Crear elemento de notificación
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.innerHTML = `
+        <div class="notification-content">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+          <span>${message}</span>
+        </div>
+      `;
+      
+      // Agregar al body
+      document.body.appendChild(notification);
+      
+      // Mostrar con animación
+      setTimeout(() => notification.classList.add('show'), 100);
+      
+      // Remover después de 5 segundos
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+      }, 5000);
+    }
   </script>
 </body>
 </html> 
